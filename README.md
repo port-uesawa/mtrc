@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # project
 
 > Nuxt.js project
@@ -20,3 +21,7 @@ $ npm run generate
 ```
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+=======
+# mtrc
+個人用
+>>>>>>> 05ae52e57462517f038489f5fc009cf22ed4717c
