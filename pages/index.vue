@@ -25,20 +25,7 @@ export default {
     Logo
   }
 }
-window.onload = function handleDownload() {
-    var bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
-    var content = 'あいうえお,かきくけこ,さしすせそ/n123,456,789,/rqwe,asd,zxc';
-    var blob = new Blob([ bom, content ], { "type" : "text/csv" });
 
-    if (window.navigator.msSaveBlob) {
-        window.navigator.msSaveBlob(blob, "test.csv");
-
-        // msSaveOrOpenBlobの場合はファイルを保存せずに開ける
-        window.navigator.msSaveOrOpenBlob(blob, "test.csv");
-    } else {
-        document.getElementById("download").href = window.URL.createObjectURL(blob);
-    }
-}
 
 </script>
 
