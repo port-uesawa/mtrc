@@ -1,5 +1,5 @@
 <template>
-  <div id='test'>
+  <div>
     <nuxt/>
   </div>
 </template>
