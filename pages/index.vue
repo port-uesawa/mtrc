@@ -1,6 +1,7 @@
 <template>
   <section class="container">
     <div>
+      <overrayheader/>
       <logo/>
       <h1 class="title">
         project
@@ -18,15 +19,14 @@
 
 <script>
   import Logo from '~/components/Logo.vue'
-  import hoge from '~/assets/javascripts/hoge.js'
+  import OverrayHeader from '~/components/OverrayHeader.vue'
 
   export default {
     components: {
+      OverrayHeader,
       Logo
     }
   }
-  const a = hoge
-  console.log('123', a)
 </script>
 
 <style>
