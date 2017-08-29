@@ -1,42 +1,30 @@
 <template>
-  <section class="container">
-    <overrayheader/>
+
+  <section class="l-main">
+    <overlayheader/>
+    <p>test</p>
   </section>
 </template>
 
 <script>
-  import Overrayheader from '~/components/OverrayHeader.vue'
+  import Overlayheader from '~/components/common/OverlayHeader.vue'
   export default {
     components: {
-      Overrayheader
+      Overlayheader
+    },
+    head: {
+      // script: [
+      //  { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' }
+      // ],
     }
   }
 </script>
 
 <style>
-  .container{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .title{
-    font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-    display: block;
-    font-weight: 300;
-    font-size: 100px;
-    color: #35495e;
-    letter-spacing: 1px;
-  }
-  .subtitle{
-    font-weight: 300;
-    font-size: 42px;
-    color: #526488;
-    word-spacing: 5px;
-    padding-bottom: 15px;
-  }
-  .links{
-    padding-top: 15px;
+  .l-main {
+    width:1280px;
+    display:flex;
+
+
   }
 </style>

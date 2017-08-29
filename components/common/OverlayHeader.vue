@@ -1,7 +1,7 @@
 <template>
-  <nav id="overray_header">
-    <i class="header_logo"></i>
-    <ul data-overray-list>
+  <nav class="l-overlay_header">
+    <i class="header_logo">ろご</i>
+    <ul data-overlay-list>
       <li v-for="item in menuContents">{{item.content}}</li>
     </ul>
   </nav>
@@ -23,6 +23,9 @@
       return {
         meta: [
           { hid: 'description', name: 'description', content: 'My custom description' }
+        ],
+        link: [
+          { rel: 'stylesheet', href: '~/assets/stylesheets/components/common/overlay_header.scss', lang: 'sass' }
         ]
       }
     }
