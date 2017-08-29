@@ -2,7 +2,7 @@
   <nav id="overray_header">
     <i class="header_logo"></i>
     <ul data-overray-list>
-      <li v-for="item in menu">{{item.content}}</li>
+      <li v-for="item in menuContents">{{item.content}}</li>
     </ul>
   </nav>
 </template>
@@ -28,5 +28,3 @@
     }
   }
 </script>
-<style>
-</style>
