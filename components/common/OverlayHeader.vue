@@ -25,7 +25,7 @@
           { hid: 'description', name: 'description', content: 'My custom description' }
         ],
         link: [
-          { rel: 'stylesheet', href: '~/assets/stylesheets/components/common/overlay_header.scss', lang: 'sass' }
+          { rel: 'stylesheet', href: '~/assets/stylesheets/components/common/overlay_header.sass', lang: 'sass' }
         ]
       }
     }
