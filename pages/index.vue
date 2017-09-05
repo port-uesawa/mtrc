@@ -11,20 +11,19 @@
   export default {
     components: {
       Overlayheader
+
     },
     head: {
-      // script: [
-      //  { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' }
-      // ],
     }
   }
 </script>
 
-<style>
+<style lang="scss">
   .l-main {
     width:1280px;
     display:flex;
-
-
+    p {
+      font-weight: 300;
+    }
   }
 </style>
