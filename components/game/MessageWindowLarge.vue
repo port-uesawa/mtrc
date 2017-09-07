@@ -2,11 +2,11 @@
   <div class="c-message-window-large">
     <div class="p-window"></div>
     <div class="p-window-cover">
-      <div class="p-window-cover__face" >
+      <div class="p-window-cover__face" v-if="face">
         <div class="p-window-cover__face--image"></div>
       </div>
       <div class="p-window-cover__message">
-        <p class="p-window-cover__title">{{name}}</p>
+        <p class="p-window-cover__title">{{title}}</p>
         <p class="p-window-cover__text">{{text}}</p>
       </div>
     </div>
@@ -15,23 +15,24 @@
 
 <script>
   export default {
-    data () {
+    data (context) {
       return {
-        display: 0, // 0 -> Faceなし 1-> Faceあり
-        name: '【アイリーン】',
-        text: 'ここにテキストがはいりますここにテキストがはいりますここにテキストがはいりますここにテキストがはいりますここにテキストがはいりますここにテキストがはいりますここにテキ'
+        face: true, // true -> Faceあり false-> Faceなし
+        faceImage: 0 // this.message.faceImage
       }
     },
+    props: ['title', 'text'],
     head () {
       return {
         meta: [
           { hid: 'description', name: 'description', content: 'My custom description' }
-        ],
-        link: [
-          // { rel: 'stylesheet', href: '/assets/stylesheets/components/common/overlay_header.scss', lang: 'scss' }
-          { rel: 'stylesheet', href: '/assets/overlay_header.css' }
         ]
       }
+    },
+    created () {
+      // console.log(this)
+      // this.name = this.message.title
+      // this.text = this.message.text
     }
   }
 </script>
@@ -81,7 +82,7 @@
       height: 100%;
       margin-left: 2%;
 
-      &--image{
+      &--image {
         width: 250px;
         height: 400px;
         background-repeat: no-repeat;
