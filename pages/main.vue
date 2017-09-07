@@ -1,10 +1,9 @@
 <template>
-
-  <section class="l-game-wrapper">
+  <section class="l-game-wrapper" v-on:click="goNuxt">
     <!-- <core/> -->
     <!-- <debugWindow/> -->
-    <backgroundImage/>
-    <messageWindowLarge/>
+    <backgroundImage v-if="config.layer.backgroundImage" />
+    <messageWindowLarge v-if="config.layer.messageWindow.large" v-bind:title="tacking.message.title" v-bind:text="tacking.message.text" />
     <!-- <CharactorArea/> -->
     <!-- <overlayheader/> -->
     <!-- <overlayheader/> -->
@@ -20,7 +19,62 @@
     components: {
       MessageWindowLarge,
       BackgroundImage
+    },
+    data (context) {
+      return {
+        config: {
+          layer: {
+            messageWindow: {
+              large: true,
+              small: false
+            },
+            backgroundImage: true
+          }
+        },
+        script: {
+          count: 0,
+          list: [
+            ['【アイリーン】', '「こんにちわ！　はじめまして！！」'],
+            ['【アイリーン】', '「この度は茉莉花v0.3.1をお試しいただきありがとうございます！」'],
+            ['【アイリーン】', '「茉莉花はOS/デバイスを選ばずに様々な環境でゲームをプレイしていただくためのマルチプラットフォームゲーム開発環境です」'],
+            ['【アイリーン】', '「たくさんの方に触っていただき、この業界を盛り上げられたらと考えています」'],
+            ['【アイリーン】', '「ぜひ、みなさん触ってみてください！」'],
+            ['【アイリーン】', '「ベースとなるようなスクリプトはありませんが、可能な限り快適な作業環境を心がけて作成しております」'],
+            ['【アイリーン】', '「また、将来的にですがブラウザのみでゲームの製作ができるような環境も考えております」'],
+            ['【アイリーン】', '「まだまだ発展途上の茉莉花ですが、どうか、みなさまよろしくお願いいたします！」']
+          ]
+        },
+        tacking: {
+          message: {
+            title: '',
+            text: ''
+          }
+        }
 
+      }
+    },
+    created () {
+      // 外部からScriptデータを取得してthis.scriptに展開
+      // this.goNuxt() // 初回は手動で実行
+    },
+    methods: {
+      goNuxt () { // クリック時次の処理の実行
+        this.script.count++ // count 進行
+        // this.tacking.message.text = this.script.list[this.script.count][1]
+        // if (0 === 0) { // メッセージ関連
+        this.runMessage()
+        // }
+      },
+      runMessage () { // テキスト関連処理
+        let array = this.script.list[this.script.count]
+        this.tacking.message.title = array[0] // title挿入
+        this.tacking.message.text = '' // text初期化
+        for (let i = 0; i < array[1].length; i++) {
+          setTimeout(() => {
+            this.tacking.message.text += array[1][i]
+          }, 40 * i)
+        }
+      }
     }
   }
 </script>
