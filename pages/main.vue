@@ -14,6 +14,8 @@
 <script>
   import MessageWindowLarge from '~/components/game/MessageWindowLarge.vue'
   import BackgroundImage from '~/components/game/BackgroundImage.vue'
+  import axios from 'axios'
+  import 'babel-polyfill'
   export default {
     layout: 'gaming',
     components: {
@@ -33,16 +35,10 @@
         },
         script: {
           count: 0,
-          list: [
-            ['【アイリーン】', '「こんにちわ！　はじめまして！！」'],
-            ['【アイリーン】', '「この度は茉莉花v0.3.1をお試しいただきありがとうございます！」'],
-            ['【アイリーン】', '「茉莉花はOS/デバイスを選ばずに様々な環境でゲームをプレイしていただくためのマルチプラットフォームゲーム開発環境です」'],
-            ['【アイリーン】', '「たくさんの方に触っていただき、この業界を盛り上げられたらと考えています」'],
-            ['【アイリーン】', '「ぜひ、みなさん触ってみてください！」'],
-            ['【アイリーン】', '「ベースとなるようなスクリプトはありませんが、可能な限り快適な作業環境を心がけて作成しております」'],
-            ['【アイリーン】', '「また、将来的にですがブラウザのみでゲームの製作ができるような環境も考えております」'],
-            ['【アイリーン】', '「まだまだ発展途上の茉莉花ですが、どうか、みなさまよろしくお願いいたします！」']
-          ]
+          list: [],
+          message: {
+            inProgress: false
+          }
         },
         tacking: {
           message: {
@@ -56,24 +52,51 @@
     created () {
       // 外部からScriptデータを取得してthis.scriptに展開
       // this.goNuxt() // 初回は手動で実行
+      this.receiveScript()
     },
     methods: {
       goNuxt () { // クリック時次の処理の実行
-        this.script.count++ // count 進行
         // this.tacking.message.text = this.script.list[this.script.count][1]
-        // if (0 === 0) { // メッセージ関連
-        this.runMessage()
-        // }
+        switch (this.script.list[this.script.count][0]) {
+          case 'T':
+            this.runMessage()
+            break
+        }
+      },
+      receiveScript () {
+        this.connectSource('/scripts/01.start.mtrc')
+      },
+      scriptizeData (data) {
+        const re = [/\n/, ':']
+        const newLine = data.split(re[0])
+        let array = []
+        newLine.forEach((e, i) => {
+          array[i] = []
+          e.split(re[1]).forEach((n) => {
+            array[i].push(n)
+          })
+        })
+        this.script.list = array
+      },
+      connectSource (param, src = '') {
+        axios.get(param).then(hoge => this.scriptizeData(hoge.data))
       },
       runMessage () { // テキスト関連処理
         let array = this.script.list[this.script.count]
-        this.tacking.message.title = array[0] // title挿入
-        this.tacking.message.text = '' // text初期化
-        for (let i = 0; i < array[1].length; i++) {
-          setTimeout(() => {
-            this.tacking.message.text += array[1][i]
-          }, 40 * i)
+        if (!this.script.message.inProgress) {
+          this.script.message.inProgress = true
+          this.tacking.message.title = array[1] // title挿入
+          this.tacking.message.text = '' // text初期化
+          for (let i = 0; i < array[2].length; i++) {
+            setTimeout(() => {
+              this.tacking.message.text += array[2][i]
+            }, 40 * i)
+          }
+          this.script.count++ // count 進行
+        } else {
+          this.tacking.message.text = array[2]
         }
+        this.script.message.inProgress = false
       }
     }
   }
