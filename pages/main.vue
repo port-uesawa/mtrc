@@ -1,7 +1,7 @@
 <template>
   <section class="l-game-wrapper" v-on:click="goNuxt">
     <!-- <core/> -->
-    <!-- <debugWindow/> -->
+    <debugWindow v-bind:status="script" />
     <backgroundImage v-if="config.layer.backgroundImage" />
     <messageWindowLarge v-if="config.layer.messageWindow.large" v-bind:title="tacking.message.title" v-bind:text="tacking.message.text" />
     <!-- <CharactorArea/> -->
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+  import DebugWindow from '~/components/game/DebugWindow.vue'
   import MessageWindowLarge from '~/components/game/MessageWindowLarge.vue'
   import BackgroundImage from '~/components/game/BackgroundImage.vue'
   import axios from 'axios'
@@ -19,6 +20,7 @@
   export default {
     layout: 'gaming',
     components: {
+      DebugWindow,
       MessageWindowLarge,
       BackgroundImage
     },
@@ -34,7 +36,9 @@
           }
         },
         script: {
+          name: '',
           count: 0,
+          current: '',
           list: [],
           message: {
             inProgress: false
@@ -46,25 +50,34 @@
             text: ''
           }
         }
-
       }
     },
     created () {
       // 外部からScriptデータを取得してthis.scriptに展開
+      this.receiveScript('/scripts/01.start.mtrc')
       // this.goNuxt() // 初回は手動で実行
-      this.receiveScript()
     },
     methods: {
       goNuxt () { // クリック時次の処理の実行
         // this.tacking.message.text = this.script.list[this.script.count][1]
+        this.script.current = this.script.list[this.script.count].join()
         switch (this.script.list[this.script.count][0]) {
           case 'T':
             this.runMessage()
             break
+          case 'L':
+            this.loadScript()
+            break
         }
       },
-      receiveScript () {
-        this.connectSource('/scripts/01.start.mtrc')
+      loadScript () {
+        let array = this.script.list[this.script.count]
+        this.script.count = 0
+        this.receiveScript(array[1])
+      },
+      receiveScript (src) {
+        this.script.name = src
+        this.connectSource(src)
       },
       scriptizeData (data) {
         const re = [/\n/, ':']
@@ -77,9 +90,10 @@
           })
         })
         this.script.list = array
+        this.goNuxt()
       },
-      connectSource (param, src = '') {
-        axios.get(param).then(hoge => this.scriptizeData(hoge.data))
+      connectSource (src) {
+        axios.get(src).then(hoge => this.scriptizeData(hoge.data))
       },
       runMessage () { // テキスト関連処理
         let array = this.script.list[this.script.count]
