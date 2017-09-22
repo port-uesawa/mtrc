@@ -87,7 +87,7 @@
         height: 400px;
         background-repeat: no-repeat;
         background-position: center;
-        background-image: url('/assets/resources/char/face/Elf-A-01.png');
+        //background-image: url('/assets/resources/char/face/Elf-A-01.png');
       }
     }
 

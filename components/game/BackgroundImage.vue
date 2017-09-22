@@ -33,6 +33,6 @@
     z-index: 1;
     width:100%;
     height:100%;
-    background-image: url('/assets/resources/bgi/03.machi.jpg');
+    // background-image: url('/assets/resources/bgi/03.machi.jpg');
   }
 </style>
