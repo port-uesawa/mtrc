@@ -20,6 +20,7 @@
       <li class='p-param-contents'>ScriptRunning:{{status.current}}</li>
       <li class='p-param-contents'>BGM:</li>
       <li class='p-param-contents'>SE:</li>
+      <li class='p-param-contents'>BGI:{{status.images.background}}</li>
     </ul>
   </div>
 </template>

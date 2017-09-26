@@ -17,7 +17,7 @@
   export default {
     data (context) {
       return {
-        face: true, // true -> Faceあり false-> Faceなし
+        face: false, // true -> Faceあり false-> Faceなし
         faceImage: 0 // this.message.faceImage
       }
     },

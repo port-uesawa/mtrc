@@ -2,9 +2,9 @@
   <section class="l-game-wrapper" v-on:click="goNuxt">
     <!-- <core/> -->
     <debugWindow v-bind:status="script" />
-    <backgroundImage v-if="config.layer.backgroundImage" />
+    <backgroundImage v-if="config.layer.backgroundImage" v-bind:color="images.backgroundColor" v-bind:image="images.backgroundImage" />
     <messageWindowLarge v-if="config.layer.messageWindow.large" v-bind:title="tacking.message.title" v-bind:text="tacking.message.text" />
-    <!-- <CharactorArea/> -->
+    <charactorArea />
     <!-- <overlayheader/> -->
     <!-- <overlayheader/> -->
 
@@ -15,6 +15,7 @@
   import DebugWindow from '~/components/game/DebugWindow.vue'
   import MessageWindowLarge from '~/components/game/MessageWindowLarge.vue'
   import BackgroundImage from '~/components/game/BackgroundImage.vue'
+  import CharactorArea from '~/components/game/CharactorArea.vue'
   import axios from 'axios'
   import 'babel-polyfill'
   export default {
@@ -22,7 +23,8 @@
     components: {
       DebugWindow,
       MessageWindowLarge,
-      BackgroundImage
+      BackgroundImage,
+      CharactorArea
     },
     data (context) {
       return {
@@ -42,6 +44,9 @@
           list: [],
           message: {
             inProgress: false
+          },
+          images: {
+            background: ''
           }
         },
         tacking: {
@@ -49,12 +54,16 @@
             title: '',
             text: ''
           }
+        },
+        images: {
+          backgroundColor: '#FFF',
+          backgroundImage: '/bgi/rougoku.jpg'
         }
       }
     },
     created () {
       // 外部からScriptデータを取得してthis.scriptに展開
-      this.receiveScript('/scripts/01.start.mtrc')
+      this.receiveScript('/scripts/03.uchimemo.mtrc')
       // this.goNuxt() // 初回は手動で実行
     },
     methods: {
@@ -67,6 +76,9 @@
             break
           case 'L':
             this.loadScript()
+            break
+          case 'B':
+            this.changeBgi()
             break
         }
       },
@@ -111,6 +123,13 @@
           this.tacking.message.text = array[2]
         }
         this.script.message.inProgress = false
+      },
+      changeBgi () {
+        let array = this.script.list[this.script.count]
+        this.images.backgroundImage = array[1]
+        this.script.images.background = array[1]
+        this.script.count++ // count 進行
+        this.goNuxt()
       }
     }
   }
