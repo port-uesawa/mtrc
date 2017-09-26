@@ -4,7 +4,7 @@
     <debugWindow v-bind:status="script" />
     <backgroundImage v-if="config.layer.backgroundImage" v-bind:color="images.backgroundColor" v-bind:image="images.backgroundImage" />
     <messageWindowLarge v-if="config.layer.messageWindow.large" v-bind:title="tacking.message.title" v-bind:text="tacking.message.text" />
-    <charactorArea />
+    <charactorArea v-bind:chars="images.stand" />
     <!-- <overlayheader/> -->
     <!-- <overlayheader/> -->
 
@@ -12,13 +12,14 @@
 </template>
 
 <script>
-  import DebugWindow from '~/components/game/DebugWindow.vue'
-  import MessageWindowLarge from '~/components/game/MessageWindowLarge.vue'
-  import BackgroundImage from '~/components/game/BackgroundImage.vue'
-  import CharactorArea from '~/components/game/CharactorArea.vue'
+  import DebugWindow from '~/components/game/DebugWindow.vue' // 90000
+  import BackgroundImage from '~/components/game/BackgroundImage.vue' // 20000
+  import CharactorArea from '~/components/game/CharactorArea.vue' // 30000
+  import MessageWindowLarge from '~/components/game/MessageWindowLarge.vue' // 40000
   import axios from 'axios'
   import 'babel-polyfill'
   export default {
+    name: 'main',
     layout: 'gaming',
     components: {
       DebugWindow,
@@ -56,6 +57,7 @@
           }
         },
         images: {
+          stand: [],
           backgroundColor: '#FFF',
           backgroundImage: '/bgi/rougoku.jpg'
         }
@@ -79,6 +81,9 @@
             break
           case 'B':
             this.changeBgi()
+            break
+          case 'C':
+            this.changeCharactor()
             break
         }
       },
@@ -128,6 +133,18 @@
         let array = this.script.list[this.script.count]
         this.images.backgroundImage = array[1]
         this.script.images.background = array[1]
+        this.script.count++ // count 進行
+        this.goNuxt()
+      },
+      changeCharactor () {
+        this.images.stand = []
+        let array = this.script.list[this.script.count]
+        console.log(array)
+        array.forEach((e, i) => {
+          if (i > 0) {
+            this.images.stand.push(e)
+          }
+        })
         this.script.count++ // count 進行
         this.goNuxt()
       }

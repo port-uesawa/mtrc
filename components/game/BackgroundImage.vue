@@ -4,6 +4,7 @@
 
 <script>
   export default {
+    name: 'backgroundArea',
     data () {
       return {
         styleObject: {
@@ -33,7 +34,7 @@
 <style lang="scss">
   .l-background-image {
     position: absolute;
-    z-index: 1;
+    z-index: 20001;
     width:100%;
     height:100%;
     background-size: cover;

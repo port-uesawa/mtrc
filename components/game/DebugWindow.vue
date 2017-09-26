@@ -27,15 +27,13 @@
 
 <script>
   export default {
+    name: 'debugWindow',
     props: ['status'],
     data (context) {
       return {
         switchFlag: false,
         debugContents: [
-          {isSwitch: true},
-          {content: 'ABOUT'},
-          {content: 'CONTENTS'},
-          {content: 'CONTACT'}
+          {isSwitch: true}
         ]
       }
     },
@@ -56,7 +54,7 @@
   .l-debug-window {
     position: absolute;
     top:0;
-    z-index: 5;
+    z-index: 90001;
     width:100%;
     background-color: rgba(0, 0, 0, 0.5);
     color:#FFF;

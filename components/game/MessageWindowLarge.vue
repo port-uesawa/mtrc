@@ -15,6 +15,7 @@
 
 <script>
   export default {
+    name: 'messageWindow',
     data (context) {
       return {
         face: false, // true -> Faceあり false-> Faceなし
@@ -51,7 +52,7 @@
     left: 0;
     width: 100%;
     height: 32%;
-    z-index: 2;
+    z-index: 40002;
   }
 
   .p-window {
@@ -60,7 +61,7 @@
     height: 93%;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 3px;
-    z-index: 3;
+    z-index: 40003;
     filter: blur(2px);
   }
 
@@ -69,7 +70,7 @@
     display:flex;
     width: 98%;
     height: 93%;
-    z-index: 4;
+    z-index: 40004;
     color: #FFF;
 
     &__face {

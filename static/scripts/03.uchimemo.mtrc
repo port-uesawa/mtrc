@@ -1,9 +1,12 @@
 B:/bgi/rougoku.jpg
+C:/char/stand/u1.png
 T:【U金さん】:「ふー今日も俺様働きまくったぜ、マジ社会人の鏡」
 T:【U金さん】:「マジ１０日連続２０時間労働とかきついわ−、マジきついわー（ミサワ風）」
+C:/char/stand/u2.png
 T:【U金さん】:「こんなに働きまくってしかもBITコインで１００兆円とか設けちゃってもうこのさき人生バラ色しかないわー」
-B:/bgi/02.mori.jpg
 T:【U金さん】:「あとはお嫁さん探すだけだけどどっかに可愛い金髪のJKとか落ちてないかなー」
+C:/char/stand/u2.png:/char/stand/u1.png
 T:【O川君】:「早く夢から覚めたほうがいいっすよ！」
+C:/char/stand/u2.png
 T:【U金さん】:「恐縮です」
 L:/scripts/03.uchimemo.mtrc
