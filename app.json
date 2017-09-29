@@ -1,0 +1,27 @@
+{
+  "name": "mtrc",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "HOST": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
