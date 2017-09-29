@@ -18,7 +18,21 @@
   import MessageWindowLarge from '~/components/game/MessageWindowLarge.vue' // 40000
   import axios from 'axios'
   import 'babel-polyfill'
+
   export default {
+    head () {
+      return {
+        link: [
+          {
+            rel: 'manifest',
+            href: '/manifest.json'
+          }
+        ],
+        script: [
+          { src: 'https://cdn.onesignal.com/sdks/OneSignalSDK.js' }
+        ]
+      }
+    },
     name: 'main',
     layout: 'gaming',
     components: {
@@ -63,8 +77,17 @@
         }
       }
     },
+    mounted () {
+      let OneSignal = window.OneSignal || []
+      OneSignal.push(['init', {
+        appId: 'da85beae-c659-421f-9b3a-56291eebb438',
+        autoRegister: false,
+        notifyButton: {
+          enable: true /* Set to false to hide */
+        }
+      }])
+    },
     created () {
-      // 外部からScriptデータを取得してthis.scriptに展開
       this.receiveScript('/scripts/03.uchimemo.mtrc')
       // this.goNuxt() // 初回は手動で実行
     },
