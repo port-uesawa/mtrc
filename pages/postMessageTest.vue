@@ -11,7 +11,7 @@
     head: {
     },
     mounted () {
-      parent.postMessage('fugaaaaaaa', 'https://jsfiddle.net/')
+      parent.postMessage('fugaaaaaaa', 'https://fiddle.jshell.net/')
     }
   }
 </script>
