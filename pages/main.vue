@@ -138,12 +138,12 @@
       runMessage () { // テキスト関連処理
         let array = this.script.list[this.script.count]
         if (!this.script.message.inProgress) {
-          this.script.message.inProgress = true;
+          this.script.message.inProgress = true
           this.tacking.message.title = array[1] // title挿入
           this.tacking.message.text = '' // text初期化
           for (let i = 0; i < array[2].length; i++) {
             setTimeout(() => {
-              this.tacking.message.text += array[2][i];
+              this.tacking.message.text += array[2][i]
             }, 40 * i)
           }
           this.script.count++ // count 進行
